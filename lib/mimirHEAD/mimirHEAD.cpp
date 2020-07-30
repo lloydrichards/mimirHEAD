@@ -441,15 +441,15 @@ void mimirHEAD::WiFi_OFF()
     WiFi.mode(WIFI_OFF);
 };
 
-void mimirHEAD::SLEEP()
+void mimirHEAD::SLEEP(long SleepDuration)
 {
     saveConfig();
     //CONFIG Sleep Pin
-    Serial.println("Config Sleep Pin");
-    gpio_pullup_en(GPIO_NUM_39);    // use pullup on GPIO
-    gpio_pulldown_dis(GPIO_NUM_39); // not use pulldown on GPIO
+    // Serial.println("Config Sleep Pin");
+    // gpio_pullup_en(GPIO_NUM_39);    // use pullup on GPIO
+    // gpio_pulldown_dis(GPIO_NUM_39); // not use pulldown on GPIO
 
-    esp_sleep_enable_ext0_wakeup(GPIO_NUM_39, 0);
+    // esp_sleep_enable_ext0_wakeup(GPIO_NUM_39, 0);
 
     //CONFIG Sleep Timer
     Serial.println("Config Sleep Timer");                                                           // Wake if GPIO is low
@@ -459,10 +459,6 @@ void mimirHEAD::SLEEP()
     Serial.println("Entering " + String(SleepTimer) + "-secs of sleep time");
     Serial.println("Awake for : " + String((millis() - StartTime) / 1000.0, 3) + "-secs");
     Serial.println("Starting deep-sleep...");
-
-    delay(100);
-    pixel.ClearTo(black);
-    pixel.Show();
 
     delay(100);
     esp_deep_sleep_start();
