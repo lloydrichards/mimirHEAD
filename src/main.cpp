@@ -21,7 +21,7 @@ void setup()
 
   mimir.logData(mimir.stringData());
 
-  mimir.SLEEP(5);
+  mimir.SLEEP(15);
 }
 
 void loop()
